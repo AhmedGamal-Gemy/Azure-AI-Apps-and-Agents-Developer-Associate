@@ -1,0 +1,22 @@
+# .env.example is the template — committed to the repo.
+# .env is your real keys — never commit this.
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Build / test
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
