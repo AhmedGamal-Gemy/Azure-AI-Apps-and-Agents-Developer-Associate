@@ -5,12 +5,12 @@ _Modules: 6_
 _Branch: `path/01-generative-ai-apps`_
 
 ## Modules completed
-- [x] Module 1 — Foundry setup, projects, resources, tools, quotas
-- [ ] Module 2
-- [ ] Module 3
-- [ ] Module 4
-- [ ] Module 5
-- [ ] Module 6
+- [x] Module 1 — Plan and prepare to develop AI solutions on Azure (Foundry portal, projects, resources, tools, quotas)
+- [ ] Module 2 — Select, deploy, and evaluate Microsoft Foundry models
+- [ ] Module 3 — Develop a generative AI chat app with Microsoft Foundry
+- [ ] Module 4 — Develop generative AI apps that use tools
+- [ ] Module 5 — Optimize generative AI model performance
+- [ ] Module 6 — Implement a responsible generative AI solution
 
 ## 3 things I learned
 

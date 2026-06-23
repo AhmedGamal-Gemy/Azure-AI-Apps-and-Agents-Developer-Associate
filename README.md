@@ -49,10 +49,14 @@ ai103-cert-prep/
 ├── README.md
 ├── tracker.md              # daily log + practice Q scores
 ├── cheatsheet.md           # built in Week 8, one page per domain
-└── path-01/
+└── path-01/  (Develop Generative AI Apps in Azure — 6 modules)
     ├── notes/
-    │   ├── 01-foundry-setup.md
-    │   └── 02-prompt-engineering.md
+    │   ├── 01-foundry-setup.md                                   (Plan and prepare to develop AI solutions on Azure)
+    │   ├── 02-select-deploy-evaluate-models.md                   (Select, deploy, and evaluate Microsoft Foundry models)
+    │   ├── 03-generative-ai-chat-app.md                          (Develop a generative AI chat app with Microsoft Foundry)
+    │   ├── 04-generative-ai-apps-with-tools.md                   (Develop generative AI apps that use tools)
+    │   ├── 05-optimize-gen-ai-performance.md                    (Optimize generative AI model performance)
+    │   └── 06-responsible-gen-ai.md                              (Implement a responsible generative AI solution)
     ├── labs/
     │   ├── deploy_model.py
     │   └── prompt_flow_basic/
@@ -70,7 +74,7 @@ ai103-cert-prep/
 ## Commit Convention
 
 ```
-feat:   add path01 module02 prompt engineering notes
+feat:   add path01 module02 (select, deploy, evaluate models) notes
 lab:    deploy gpt-4o-mini via foundry sdk
 fix:    correct chunking strategy notes in path02
 review: add mock exam 1 score + wrong answers
@@ -82,8 +86,8 @@ review: add mock exam 1 score + wrong answers
 
 | Week | Book Path | Cert Focus | Key Lab | Dates |
 |------|-----------|------------|---------|-------|
-| 1 | Path 1 (mod 1–3) | Domain 1 — plan & manage | Deploy GPT-4o-mini, content filters | 22–28 Jun |
-| 2 | Path 1 (mod 4–6) | Domain 2 — gen AI, Prompt Flow | Build Prompt Flow + eval node | 29 Jun–5 Jul |
+| 1 | Path 1 (mod 1–3) Foundry setup + select/deploy/eval + chat app | Domain 1 — plan & manage | Deploy GPT-4o-mini, content filters | 22–28 Jun |
+| 2 | Path 1 (mod 4–6) tools + perf + responsible AI | Domain 2 — gen AI, Prompt Flow | Build Prompt Flow + eval node | 29 Jun–5 Jul |
 | 3 | Path 2 (mod 1–5) | Domain 2 — agents, function calling | Foundry agent + 2 custom tools | 6–12 Jul |
 | 4 | Path 2 (mod 6–9) | Domain 2 — RAG, AI Search | Full RAG pipeline | 13–19 Jul |
 | 5 | Path 2 finish + Path 3 start | Domain 2 — multi-agent, eval runs | LLM-as-judge eval run | 20–26 Jul |
