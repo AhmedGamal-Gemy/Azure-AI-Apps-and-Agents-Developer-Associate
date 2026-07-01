@@ -1,6 +1,7 @@
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
+model_deployment = "DeepSeek-V4-Flash"
 
 # Connecting to the Azure OpenAI endpoint
 
@@ -117,14 +118,19 @@ openai_client = OpenAI(
 
 ##### For streaming baby 
 
-stream = openai_client.responses.create(
-    model="DeepSeek-V4-Flash",
-    input="Write a short story about a robot learning to paint.",
-    stream=True
-)
+def main():
+    stream = openai_client.responses.create(
+        model=model_deployment,
+        input="Write a short story about a robot learning to paint.",
+        stream=True,
+    )
 
-for event in stream:
-    if event.type == "response.output_text.delta":
-        print(event.delta, end="", flush=True)
-    elif event.type == "response.output_text.done":
-        print()
+    for event in stream:
+        if event.type == "response.output_text.delta":
+            print(event.delta, end="", flush=True)
+        elif event.type == "response.output_text.done":
+            print()
+
+
+if __name__ == "__main__":
+    main()

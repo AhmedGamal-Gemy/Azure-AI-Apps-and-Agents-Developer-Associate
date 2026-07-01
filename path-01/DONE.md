@@ -8,18 +8,18 @@ _Branch: `path/01-generative-ai-apps`_
 - [x] Module 1 — Plan and prepare to develop AI solutions on Azure (Foundry portal, projects, resources, tools, quotas)
 - [x] Module 2 — Select, deploy, and evaluate Microsoft Foundry models
 - [x] Module 3 — Develop a generative AI chat app with Microsoft Foundry
-- [ ] Module 4 — Develop generative AI apps that use tools
+- [x] Module 4 — Develop generative AI apps that use tools
 - [ ] Module 5 — Optimize generative AI model performance
 - [ ] Module 6 — Implement a responsible generative AI solution
 
 ## 3 things I learned
 
-1. **Two SDKs, different jobs — and you can use both.** The **Foundry SDK** (AIProjectClient) gives you project-level features: agents, evaluations, tracing, dataset management, and Foundry direct models. The **OpenAI SDK** (OpenAI client) gives you maximum compatibility and portability. For chat apps you use the OpenAI SDK either way — the Foundry SDK's chat client is actually derived from the OpenAI SDK via `get_openai_client()`. You can mix both in one app: Foundry SDK for project stuff, OpenAI SDK for model inference.
+1. **Four tools, two tiers.** `web_search` and `code_interpreter` need zero setup — just add the type to the tools list. `file_search` requires a vector store + uploaded files first. `function` needs a schema definition and a round-trip handler on your side. The model decides which tool to invoke based on the prompt — you don't call them directly.
 
-2. **Three authentication patterns.** **API keys** — simplest but dangerous, should be in Azure Key Vault, not in code. **Environment variables** — `OPENAI_BASE_URL` + `OPENAI_API_KEY` gives you zero-config `OpenAI()`. **Microsoft Entra ID** — production path, using `DefaultAzureCredential` with a `get_bearer_token_provider`. The token provider pattern (`get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")`) works across both Foundry SDK and OpenAI SDK auth.
+2. **file_search = vector stores + files.** Create a vector store (`client.vector_stores.create`), upload files with `upload_and_poll`, then reference the store ID in the tool definition. I uploaded PDF brochures and the model answered questions from them automatically. The vector store persists across sessions.
 
-3. **Responses API is the new path, but manual chaining gives control.** The Responses API is stateful — it maintains conversation context across turns, works with Foundry direct models, and is Microsoft's recommended path for new development. ChatCompletions is still valid for portability. The lab exercise showed manual conversation chaining: build a `conversation_history` list, append assistant responses with `response.output`, and pass it all back on each turn. This gives you full control over what stays in context vs. what gets pruned for token limits.
+3. **Reusing the Module 3 client setup.** I imported the OpenAI client from my previous lab (`03-generative-ai-chat-app.py`) instead of rewriting auth — saved a lot of boilerplate. The pattern: put shared setup in one file, import it in each lab exercise.
 
 ## 1 question I still have
 
-- **Is the Responses API stateful at the Azure side or stateless-client-side?** From the lab it looks like I'm still manually passing `conversation_history` — so the "stateful" claim seems to mean the API response format includes output items that I can thread back, not that there's a server-side session. Does the Responses API actually persist state somewhere, or is it just a differently shaped input/output format compared to ChatCompletions?
+- **How does the `function` tool round-trip actually work in the Responses API?** I understand the schema part, but once the model returns `function_call`, do I call `responses.create` again with `function_call_output`, or is there a different API for submitting the result back? The exercise spec had it but I didn't implement it — I want to be clear on the flow before the exam.
